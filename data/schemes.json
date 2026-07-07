@@ -1,0 +1,123 @@
+[
+  {
+    "id": "pm-kisan",
+    "name": "Pradhan Mantri Kisan Samman Nidhi",
+    "category": "Agriculture & Farming",
+    "description": "An initiative by the Government of India that provides up to ₹6,000 per year in three equal installments to all small and marginal landholding farmer families as minimum income support.",
+    "benefits": "₹6,000 per year, paid in three installments of ₹2,000 directly to bank accounts.",
+    "eligibility": {
+      "min_age": 18,
+      "max_age": 120,
+      "states": ["All"],
+      "gender": "Any",
+      "occupations": ["Farmer", "Agriculture Laborer"],
+      "max_income": 300000,
+      "additional": "Must own cultivable landholdings in their name. Exclusion categories apply (e.g., institutional landholders, income-tax payers, retired pensioners receiving >₹10,000/month)."
+    },
+    "documents": [
+      "Aadhaar Card (Mandatory)",
+      "Land Ownership Documents (Khasra/Khatauni)",
+      "Bank Account Passbook (Linked with Aadhaar)",
+      "Active Mobile Number"
+    ],
+    "application_mode": "Online self-registration or through local Common Service Centers (CSC)",
+    "official_url": "https://pmkisan.gov.in"
+  },
+  {
+    "id": "ayushman-bharat",
+    "name": "Ayushman Bharat - PM Jan Arogya Yojana (PM-JAY)",
+    "category": "Health & Healthcare",
+    "description": "The largest health assurance scheme in the world, aiming to provide a health cover of ₹5 lakhs per family per year for secondary and tertiary care hospitalization to over 12 crore poor and vulnerable families.",
+    "benefits": "Cashless health cover of ₹5,00,000 per family per year for hospitalization expenses, including pre and post-hospitalization costs.",
+    "eligibility": {
+      "min_age": 0,
+      "max_age": 120,
+      "states": ["All"],
+      "gender": "Any",
+      "occupations": ["Unorganized Sector Worker", "Laborer", "Domestic Worker", "Artisan", "Unemployed"],
+      "max_income": 180000,
+      "additional": "Identified through SECC (Socio-Economic Caste Census) 2011 database. Automatically covers families living in one-room Kutcha houses, landless households deriving major income from manual casual labor."
+    },
+    "documents": [
+      "Aadhaar Card / Ration Card",
+      "PM-JAY Letter or Golden Card",
+      "Income Certificate",
+      "Family ID Card"
+    ],
+    "application_mode": "Walk-in verification at any empanelled hospital or Ayushman Mitra center",
+    "official_url": "https://pmjay.gov.in"
+  },
+  {
+    "id": "pm-awas-yojana",
+    "name": "Pradhan Mantri Awas Yojana - Urban & Gramin (PMAY)",
+    "category": "Housing & Infrastructure",
+    "description": "A flagship mission of the Government of India that addresses the housing shortage among the EWS/LIG and MIG categories by providing interest subsidies on home loans or direct financial assistance for house construction.",
+    "benefits": "Interest subsidy of up to 6.5% on home loans, or direct financial assistance up to ₹1.2 lakh (plains) / ₹1.3 lakh (hilly areas) for house construction.",
+    "eligibility": {
+      "min_age": 18,
+      "max_age": 70,
+      "states": ["All"],
+      "gender": "Any",
+      "occupations": ["Any"],
+      "max_income": 600000,
+      "additional": "The beneficiary family must not own a pucca (brick) house in any part of India in their name or in the name of any family member. Women ownership or co-ownership of the house is preferred."
+    },
+    "documents": [
+      "Aadhaar Card",
+      "Pan Card",
+      "Income Certificate / Salary Slips",
+      "Affidavit stating the family does not own a pucca house",
+      "Address Proof (Voter ID, Utility Bill)"
+    ],
+    "application_mode": "Online registration through the PMAY portal or local municipality offices",
+    "official_url": "https://pmaymis.gov.in"
+  },
+  {
+    "id": "atal-pension-yojana",
+    "name": "Atal Pension Yojana (APY)",
+    "category": "Pension & Security",
+    "description": "A pension scheme focusing on unorganized sector workers, offering a guaranteed minimum pension of ₹1,000 to ₹5,000 per month from the age of 60, based on their contributions.",
+    "benefits": "Guaranteed minimum pension of ₹1,000, ₹2,000, ₹3,000, ₹4,000 or ₹5,000 per month after attaining 60 years of age.",
+    "eligibility": {
+      "min_age": 18,
+      "max_age": 40,
+      "states": ["All"],
+      "gender": "Any",
+      "occupations": ["Unorganized Sector Worker", "Self Employed", "Daily Wager"],
+      "max_income": 500000,
+      "additional": "Must have a savings bank account. Must not be a member of any statutory social security scheme (like EPF, EPS) and must not be an income tax payer."
+    },
+    "documents": [
+      "Aadhaar Card",
+      "Savings Bank Account Passbook",
+      "Mobile Number (Linked with Bank)"
+    ],
+    "application_mode": "Visit the branch of your bank/post office where you hold a savings account and submit the APY enrollment form",
+    "official_url": "https://www.npscra.nsdl.co.in"
+  },
+  {
+    "id": "ladli-laxmi-yojana",
+    "name": "Ladli Laxmi Yojana (2.0)",
+    "category": "Women & Children",
+    "description": "A state-level initiative (popularized in Madhya Pradesh and other states) to improve the educational and economic status of girl children, prevent child marriage, and promote positive attitudes towards girl birth.",
+    "benefits": "A cumulative fund of ₹1.43 lakhs distributed at milestones: schooling scholarships (₹2k-₹6k) and ₹1 lakh lumpsum on completing 21 years without early marriage.",
+    "eligibility": {
+      "min_age": 0,
+      "max_age": 18,
+      "states": ["Madhya Pradesh", "Rajasthan", "Delhi"],
+      "gender": "Female",
+      "occupations": ["Student", "Child"],
+      "max_income": 200000,
+      "additional": "Parents must be permanent residents of the state. Parents must not be income tax payers. Application must be filed within one year of the girl's birth (with birth certificate)."
+    },
+    "documents": [
+      "Girl Child Birth Certificate",
+      "Aadhaar Card of Parents & Child",
+      "State Domicile Certificate",
+      "Family Income Certificate",
+      "Parental sterilization certificate (if applicable for second child)"
+    ],
+    "application_mode": "Online submission through Anganwadi workers or the Ladli Laxmi Portal",
+    "official_url": "https://ladlilaxmi.mp.gov.in"
+  }
+]

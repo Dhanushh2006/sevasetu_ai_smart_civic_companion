@@ -1,0 +1,17 @@
+# Local configuration
+.env
+.env*.local
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# System / IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "comp-101",
+    "title": "Severe Potholes on Main MG Road",
+    "category": "Roads & Transport",
+    "description": "A series of large potholes have formed near the main junction. During rains, they fill with water, making it extremely dangerous for two-wheelers. Several minor accidents have already occurred this week.",
+    "location": "MG Road, near Central Metro Station, Bangalore",
+    "latitude": 12.9756,
+    "longitude": 77.6068,
+    "severity": "High",
+    "status": "Assigned",
+    "submitted_by": "Ramesh Kumar",
+    "submitted_at": "2026-07-01T10:30:00Z",
+    "timeline": [
+      { "status": "Submitted", "timestamp": "2026-07-01T10:30:00Z", "note": "Complaint registered successfully." },
+      { "status": "Under Review", "timestamp": "2026-07-02T09:15:00Z", "note": "Assigned to the Ward 84 Engineering Department." },
+      { "status": "Assigned", "timestamp": "2026-07-03T14:20:00Z", "note": "Contractor assigned for road restoration." }
+    ],
+    "image_path": "/static/assets/pothole.jpg",
+    "ai_verification": {
+      "verified": true,
+      "category_detected": "Road Infrastructure Damage",
+      "severity_score": 8,
+      "confidence": 0.94,
+      "draft_letter": "To,\nThe Executive Engineer,\nBruhat Bengaluru Mahanagara Palike,\nBengaluru.\n\nSubject: Urgent repair of potholes on MG Road\n\nDear Sir/Madam,\n\nI am writing to draw your attention to the hazardous potholes on MG Road. This issue poses an immediate risk to commuter safety and requires urgent asphalt sealing.\n\nSincerely,\nCitizen Ramesh Kumar"
+    }
+  },
+  {
+    "id": "comp-102",
+    "title": "Overflowing Public Garbage Dumpster",
+    "category": "Sanitation & Waste",
+    "description": "The municipal dustbins at the corner of 5th Cross have not been cleared for three days. Stray dogs are scattering waste across the road, creating an unbearable stench and health hazard.",
+    "location": "5th Cross, Indiranagar, Bangalore",
+    "latitude": 12.9716,
+    "longitude": 77.6412,
+    "severity": "Medium",
+    "status": "Under Review",
+    "submitted_by": "Ananya Sharma",
+    "submitted_at": "2026-07-05T08:00:00Z",
+    "timeline": [
+      { "status": "Submitted", "timestamp": "2026-07-05T08:00:00Z", "note": "Complaint registered successfully." },
+      { "status": "Under Review", "timestamp": "2026-07-06T11:45:00Z", "note": "Forwarded to the Solid Waste Management division." }
+    ],
+    "image_path": "/static/assets/garbage.jpg",
+    "ai_verification": {
+      "verified": true,
+      "category_detected": "Solid Waste & Sanitation",
+      "severity_score": 5,
+      "confidence": 0.98,
+      "draft_letter": "To,\nThe Health Inspector,\nSolid Waste Management,\nBengaluru.\n\nSubject: Clearing of overflowing dumpster at 5th Cross, Indiranagar\n\nDear Sir/Madam,\n\nI am writing to report that garbage has accumulated at 5th Cross. It is causing health risks. Kindly dispatch the sanitation truck immediately.\n\nSincerely,\nCitizen Ananya Sharma"
+    }
+  },
+  {
+    "id": "comp-103",
+    "title": "Broken Streetlight Near Public Park",
+    "category": "Utilities & Power",
+    "description": "The streetlight directly opposite the main gate of the Sector 4 Public Park has been non-functional for over two weeks. The street is completely dark after 7 PM, creating safety concerns for women and children visiting the park.",
+    "location": "Sector 4, Main Park Gate, Noida",
+    "latitude": 28.5833,
+    "longitude": 77.3167,
+    "severity": "Medium",
+    "status": "Resolved",
+    "submitted_by": "Vikram Singh",
+    "submitted_at": "2026-06-28T19:40:00Z",
+    "timeline": [
+      { "status": "Submitted", "timestamp": "2026-06-28T19:40:00Z", "note": "Complaint registered successfully." },
+      { "status": "Under Review", "timestamp": "2026-06-29T10:00:00Z", "note": "Assigned to the Electrical Maintenance division." },
+      { "status": "Assigned", "timestamp": "2026-06-29T15:30:00Z", "note": "Technician dispatched to replace the LED fixture." },
+      { "status": "Resolved", "timestamp": "2026-07-02T12:00:00Z", "note": "Bulb replaced and light verified functional by technician." }
+    ],
+    "image_path": "/static/assets/broken_light.jpg",
+    "ai_verification": {
+      "verified": true,
+      "category_detected": "Street Lighting & Power",
+      "severity_score": 6,
+      "confidence": 0.89,
+      "draft_letter": "To,\nThe Senior Engineer,\nNoida Power Corporation Ltd,\nNoida.\n\nSubject: Replacement of streetlight at Sector 4 Park\n\nDear Sir/Madam,\n\nThe streetlight at Sector 4 Park gate is broken, causing security hazards. Please install a new fixture.\n\nSincerely,\nCitizen Vikram Singh"
+    }
+  }
+]

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SevaSetu AI - Smart Bharat Civic Companion</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- App Custom CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body class="dark-mode">
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="logo-icon">
+                    <i data-lucide="shield-alert" class="brand-logo-svg"></i>
+                </div>
+                <div>
+                    <h2>SevaSetu <span class="accent-text">AI</span></h2>
+                    <span class="brand-subtitle">Smart Civic Companion</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" data-tab="tab-dashboard">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard Hub</span>
+                </button>
+                <button class="nav-btn" data-tab="tab-schemes">
+                    <i data-lucide="search-code"></i>
+                    <span>Scheme Matcher</span>
+                </button>
+                <button class="nav-btn" data-tab="tab-file-grievance">
+                    <i data-lucide="image-plus"></i>
+                    <span>Report Civic Issue</span>
+                </button>
+                <button class="nav-btn" data-tab="tab-tracker">
+                    <i data-lucide="map-pin"></i>
+                    <span>Grievance Tracker</span>
+                </button>
+                <button class="nav-btn" data-tab="tab-admin">
+                    <i data-lucide="shield-check"></i>
+                    <span>Admin Simulator</span>
+                </button>
+                <button class="nav-btn" data-tab="tab-settings">
+                    <i data-lucide="settings"></i>
+                    <span>API Configuration</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">CS</div>
+                    <div class="user-info">
+                        <span class="user-name">Citizen Sathi</span>
+                        <span class="user-role">Nagrik Mode</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1 id="page-title">Dashboard Hub</h1>
+                    <p id="page-subtitle" class="text-secondary">Real-time civic diagnostics and local updates.</p>
+                </div>
+                
+                <div class="header-right">
+                    <!-- Language Selection -->
+                    <div class="language-dropdown">
+                        <i data-lucide="languages" class="lang-icon"></i>
+                        <select id="lang-selector" class="lang-select">
+                            <option value="English">English</option>
+                            <option value="Hindi">हिन्दी (Hindi)</option>
+                            <option value="Kannada">ಕನ್ನಡ (Kannada)</option>
+                            <option value="Tamil">தமிழ் (Tamil)</option>
+                            <option value="Telugu">తెలుగు (Telugu)</option>
+                            <option value="Bengali">বাংলা (Bengali)</option>
+                            <option value="Marathi">मराठी (Marathi)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- AI Status Indicator -->
+                    <div id="ai-status-badge" class="ai-status-indicator simulated">
+                        <span class="status-dot animate-pulse"></span>
+                        <span id="ai-status-text">AI: Simulated</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Tab Contents -->
+            <div class="content-body">
+                
+                <!-- TAB 1: DASHBOARD -->
+                <div id="tab-dashboard" class="tab-pane active">
+                    <!-- Metric Cards -->
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon bg-indigo-light">
+                                <i data-lucide="clipboard-list" class="text-indigo"></i>
+                            </div>
+                            <div class="metric-details">
+                                <span class="metric-val" id="count-total">0</span>
+                                <span class="metric-label">Total Grievances</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon bg-yellow-light">
+                                <i data-lucide="clock" class="text-yellow"></i>
+                            </div>
+                            <div class="metric-details">
+                                <span class="metric-val" id="count-active">0</span>
+                                <span class="metric-label">In-Progress</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon bg-emerald-light">
+                                <i data-lucide="check-circle2" class="text-emerald"></i>
+                            </div>
+                            <div class="metric-details">
+                                <span class="metric-val" id="count-resolved">0</span>
+                                <span class="metric-label">Resolved Issues</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon bg-teal-light">
+                                <i data-lucide="award" class="text-teal"></i>
+                            </div>
+                            <div class="metric-details">
+                                <span class="metric-val">94.8%</span>
+                                <span class="metric-label">Avg SLA Score</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Dashboard Visuals -->
+                    <div class="dashboard-visuals">
+                        <!-- Left: Civic Map -->
+                        <div class="card map-card">
+                            <div class="card-header">
+                                <h3><i data-lucide="map" class="title-icon"></i> Community Grievance Heatmap</h3>
+                                <p class="card-subtitle">Click anywhere on the map to mock a location for your report</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="dashboard-map" class="map-container"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right: Stats & AI Report Summary -->
+                        <div class="dashboard-sidebar">
+                            <!-- AI Insight Card -->
+                            <div class="card ai-insight-card">
+                                <div class="card-header">
+                                    <div class="ai-header-badge">
+                                        <i data-lucide="sparkles" class="text-indigo animate-bounce"></i>
+                                        <span>AI Diagnostic Engine</span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="insight-content">
+                                        <p class="insight-label">LOCAL AREA SUMMARY:</p>
+                                        <div id="ai-typewriter" class="typewriter-text">
+                                            Analyzing local neighborhood reports...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Category Distribution Chart -->
+                            <div class="card chart-card">
+                                <div class="card-header">
+                                    <h3><i data-lucide="pie-chart" class="title-icon"></i> Grievances by Category</h3>
+                                </div>
+                                <div class="card-body chart-body">
+                                    <canvas id="categoryChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB 2: SCHEME MATCHER -->
+                <div id="tab-schemes" class="tab-pane">
+                    <div class="schemes-layout">
+                        <!-- Left: Eligibility Filter Panel -->
+                        <div class="card filter-card">
+                            <div class="card-header">
+                                <h3><i data-lucide="sliders" class="title-icon"></i> Profile Matcher Wizard</h3>
+                                <p class="card-subtitle">Filter welfare schemes based on your profile details</p>
+                            </div>
+                            <div class="card-body">
+                                <form id="scheme-filter-form" class="filter-form">
+                                    <div class="form-group">
+                                        <label for="filter-state">State of Residence</label>
+                                        <select id="filter-state" class="form-control">
+                                            <option value="All">All States (Central)</option>
+                                            <option value="Karnataka">Karnataka</option>
+                                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                            <option value="Rajasthan">Rajasthan</option>
+                                            <option value="Delhi">Delhi</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="filter-gender">Gender</label>
+                                        <select id="filter-gender" class="form-control">
+                                            <option value="Any">Any / All</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Male">Male</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="grid-2-col">
+                                        <div class="form-group">
+                                            <label for="filter-age">Age (Years)</label>
+                                            <input type="number" id="filter-age" class="form-control" value="28" min="0" max="100">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="filter-income">Annual Income (₹)</label>
+                                            <input type="number" id="filter-income" class="form-control" value="150000" min="0">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="filter-occupation">Occupation Type</label>
+                                        <select id="filter-occupation" class="form-control">
+                                            <option value="Any">Any Occupation</option>
+                                            <option value="Farmer">Farmer</option>
+                                            <option value="Agriculture Laborer">Agriculture Laborer</option>
+                                            <option value="Unorganized Sector Worker">Unorganized Sector Worker</option>
+                                            <option value="Self Employed">Self Employed</option>
+                                            <option value="Student">Student</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <button type="button" id="btn-match-schemes" class="btn btn-primary btn-block">
+                                        <i data-lucide="sparkles"></i> AI Match Schemes
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Right: Schemes Grid -->
+                        <div class="schemes-results-area">
+                            <div class="results-header">
+                                <span class="results-count" id="scheme-matches-count">Showing 5 schemes</span>
+                                <div class="search-box">
+                                    <i data-lucide="search"></i>
+                                    <input type="text" id="scheme-search-input" placeholder="Search schemes by keyword...">
+                                </div>
+                            </div>
+                            
+                            <div id="schemes-grid" class="schemes-grid">
+                                <!-- Schemes injected via JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB 3: FILE GRIEVANCE -->
+                <div id="tab-file-grievance" class="tab-pane">
+                    <div class="grievance-form-layout">
+                        <!-- Left: Form Input -->
+                        <div class="card form-card">
+                            <div class="card-header">
+                                <h3><i data-lucide="file-edit" class="title-icon"></i> Submit New Complaint</h3>
+                                <p class="card-subtitle">Upload a photo to let our AI vision analyze details instantly</p>
+                            </div>
+                            <div class="card-body">
+                                <form id="grievance-form" class="grievance-form">
+                                    <!-- Photo Upload Zone -->
+                                    <div class="form-group">
+                                        <label>Civic Issue Photo <span class="required">*</span></label>
+                                        <div id="upload-zone" class="upload-dropzone">
+                                            <input type="file" id="issue-image-input" accept="image/*" class="file-input-hidden">
+                                            <div class="dropzone-content">
+                                                <i data-lucide="image" class="upload-icon"></i>
+                                                <p class="upload-text">Drag & drop photo here or <span>browse files</span></p>
+                                                <span class="upload-hint">Supports JPEG, PNG, WEBP (Max 5MB)</span>
+                                            </div>
+                                            <div class="preview-container hidden">
+                                                <img id="image-preview" src="#" alt="Upload Preview">
+                                                <button type="button" id="btn-remove-photo" class="btn-circle btn-danger"><i data-lucide="x"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="grievance-title">Complaint Title</label>
+                                        <input type="text" id="grievance-title" class="form-control" placeholder="e.g. Massive pothole in front of community gate" required>
+                                        <span class="field-hint">AI will auto-fill/suggest this once photo is uploaded!</span>
+                                    </div>
+                                    
+                                    <div class="grid-2-col">
+                                        <div class="form-group">
+                                            <label for="grievance-category">Issue Category</label>
+                                            <select id="grievance-category" class="form-control">
+                                                <option value="Roads & Transport">Roads & Transport</option>
+                                                <option value="Sanitation & Waste">Sanitation & Waste</option>
+                                                <option value="Utilities & Power">Utilities & Power</option>
+                                                <option value="Health & Safety">Health & Safety</option>
+                                                <option value="Public Amenities">Public Amenities</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="grievance-severity">Severity level</label>
+                                            <select id="grievance-severity" class="form-control">
+                                                <option value="Low">Low (Non-urgent)</option>
+                                                <option value="Medium" selected>Medium (Standard)</option>
+                                                <option value="High">High (Immediate Risk)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="grievance-description">Detailed Description</label>
+                                        <textarea id="grievance-description" class="form-control" rows="3" placeholder="Describe the issue, hazards, and exact coordinates/markers..." required></textarea>
+                                    </div>
+                                    
+                                    <div class="grid-3-col">
+                                        <div class="form-group col-span-2">
+                                            <label for="grievance-location">Location Address</label>
+                                            <input type="text" id="grievance-location" class="form-control" placeholder="Street name, landmark..." required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <button type="button" id="btn-gps-mock" class="btn btn-secondary btn-block">
+                                                <i data-lucide="navigation"></i> Mock GPS
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="grid-2-col">
+                                        <div class="form-group">
+                                            <label for="grievance-lat">Latitude</label>
+                                            <input type="number" step="0.000001" id="grievance-lat" class="form-control" value="12.9716">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="grievance-lng">Longitude</label>
+                                            <input type="number" step="0.000001" id="grievance-lng" class="form-control" value="77.5946">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="grievance-reporter">Your Full Name</label>
+                                        <input type="text" id="grievance-reporter" class="form-control" value="Citizen Sathi">
+                                    </div>
+                                    
+                                    <button type="submit" id="btn-submit-grievance" class="btn btn-emerald btn-block">
+                                        <i data-lucide="check-square"></i> File Official Complaint
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Right: AI Vision Diagnostic Panel -->
+                        <div class="card ai-vision-panel">
+                            <div class="card-header bg-slate-900 border-b border-gray-800 flex justify-between items-center">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="eye" class="text-indigo"></i>
+                                    <h3>AI Computer Vision Diagnostics</h3>
+                                </div>
+                                <span id="vision-loader" class="loader hidden"></span>
+                            </div>
+                            <div class="card-body vision-body">
+                                <div id="vision-empty-state" class="empty-state">
+                                    <i data-lucide="image" class="empty-icon text-indigo"></i>
+                                    <h4>No Image Analyzed Yet</h4>
+                                    <p>Please upload a photo in the form to trigger live Multimodal LLM analysis. The AI will detect category, rate severity, confidence, and write a formal municipal letter automatically.</p>
+                                </div>
+                                
+                                <div id="vision-results-content" class="vision-results hidden">
+                                    <div class="diagnostic-meta">
+                                        <div class="diag-item">
+                                            <span class="label">Detected Category</span>
+                                            <span class="val bg-indigo-dark text-indigo" id="vision-cat">Roads & Transport</span>
+                                        </div>
+                                        <div class="diag-item">
+                                            <span class="label">Confidence Score</span>
+                                            <span class="val bg-emerald-dark text-emerald" id="vision-conf">98%</span>
+                                        </div>
+                                        <div class="diag-item">
+                                            <span class="label">Severity Rating</span>
+                                            <span class="val bg-red-dark text-red" id="vision-sev">High (8/10)</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="letter-draft-box">
+                                        <div class="letter-header">
+                                            <span>MUNICIPAL OFFICIAL LETTER DRAFT</span>
+                                            <button type="button" id="btn-copy-letter" class="btn btn-secondary btn-sm">
+                                                <i data-lucide="copy"></i> Copy Letter
+                                            </button>
+                                        </div>
+                                        <pre id="vision-letter" class="letter-content"></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB 4: GRIEVANCE TRACKER -->
+                <div id="tab-tracker" class="tab-pane">
+                    <div class="tracker-layout">
+                        <!-- Left List Panel -->
+                        <div class="card list-card">
+                            <div class="card-header">
+                                <h3><i data-lucide="list" class="title-icon"></i> Registered Complaints</h3>
+                                <p class="card-subtitle">Select any report to view its historical timeline</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="tracker-search-bar">
+                                    <div class="search-box">
+                                        <i data-lucide="search"></i>
+                                        <input type="text" id="tracker-search-input" placeholder="Search by ID, Category, or Title...">
+                                    </div>
+                                </div>
+                                <div id="tracker-list" class="tracker-list">
+                                    <!-- Dynamic list items injected -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Detail Timeline -->
+                        <div class="card detail-timeline-card">
+                            <div class="card-header">
+                                <h3><i data-lucide="activity" class="title-icon"></i> Lifecycle & Remediation Timeline</h3>
+                            </div>
+                            <div class="card-body timeline-body">
+                                <div id="timeline-empty-state" class="empty-state">
+                                    <i data-lucide="git-commit" class="empty-icon text-indigo"></i>
+                                    <h4>Select a Complaint</h4>
+                                    <p>Select a ticket from the left list to see detail photos, GPS coordinates, local department updates, and the timeline history.</p>
+                                </div>
+                                
+                                <div id="timeline-results-content" class="timeline-results hidden">
+                                    <div class="ticket-header-details">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <span class="ticket-id" id="timeline-ticket-id">comp-101</span>
+                                                <h2 id="timeline-ticket-title">Broken Streetlight Near Park</h2>
+                                            </div>
+                                            <span class="status-badge" id="timeline-ticket-status">Assigned</span>
+                                        </div>
+                                        
+                                        <div class="ticket-sub-details text-secondary">
+                                            <span><i data-lucide="tag"></i> <span id="timeline-ticket-cat">Utilities</span></span>
+                                            <span><i data-lucide="map-pin"></i> <span id="timeline-ticket-loc">Sector 4, Noida</span></span>
+                                            <span><i data-lucide="calendar"></i> <span id="timeline-ticket-date">July 1, 2026</span></span>
+                                        </div>
+                                        <p class="ticket-desc" id="timeline-ticket-desc"></p>
+                                    </div>
+                                    
+                                    <div class="grid-2-col ticket-media-sec">
+                                        <div>
+                                            <h4 class="section-title">Submitted Photo</h4>
+                                            <div class="ticket-photo-wrapper">
+                                                <img id="timeline-ticket-photo" src="#" alt="Civic Damage Report">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 class="section-title">Location Coordinates</h4>
+                                            <div id="timeline-mini-map" class="mini-map-container"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="timeline-progress-area">
+                                        <h4 class="section-title">Department Progress Track</h4>
+                                        <div id="timeline-progress-flow" class="vertical-timeline">
+                                            <!-- Steps injected here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB 5: ADMIN PORTAL SIMULATOR -->
+                <div id="tab-admin" class="tab-pane">
+                    <div class="card admin-info-header">
+                        <div class="card-body flex justify-between items-center bg-slate-900 border border-gray-800 rounded-lg p-6">
+                            <div class="flex items-center gap-4">
+                                <div class="admin-shield-icon bg-red-light text-red">
+                                    <i data-lucide="shield-check"></i>
+                                </div>
+                                <div>
+                                    <h2>Municipal Officer Control Station</h2>
+                                    <p class="text-secondary">Simulate internal municipal workflows. Approve, assign tasks, and mark issues as resolved to see instant updates in citizen view.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-red-dark text-red border border-red-800">ADMIN MODE ENABLED</span>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-layout mt-6">
+                        <!-- Left Panel: Unresolved Queue -->
+                        <div class="card admin-queue-card">
+                            <div class="card-header">
+                                <h3><i data-lucide="inbox" class="title-icon"></i> Actionable Complaints Queue</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="admin-queue-list" class="admin-queue-list">
+                                    <!-- Dynamic items -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Panel: Dispatch & Resolution Panel -->
+                        <div class="card admin-dispatch-card">
+                            <div class="card-header">
+                                <h3><i data-lucide="check-square" class="title-icon"></i> Dispatch, Status, and SLA Update</h3>
+                            </div>
+                            <div class="card-body dispatch-body">
+                                <div id="admin-empty-state" class="empty-state">
+                                    <i data-lucide="settings" class="empty-icon text-red"></i>
+                                    <h4>Select an Escalation Ticket</h4>
+                                    <p>Pick a grievance ticket from the left panel to update its status, log maintenance crew notes, and dispatch resources.</p>
+                                </div>
+                                
+                                <div id="admin-actions-content" class="admin-actions hidden">
+                                    <div class="admin-ticket-details bg-slate-900 p-4 rounded border border-gray-800">
+                                        <h4 id="admin-ticket-id">comp-101</h4>
+                                        <h3 id="admin-ticket-title">Severe Potholes</h3>
+                                        <p class="text-secondary mt-1" id="admin-ticket-loc">MG Road, Bangalore</p>
+                                    </div>
+                                    
+                                    <form id="admin-update-form" class="admin-form mt-4">
+                                        <div class="form-group">
+                                            <label for="admin-new-status">Target Workflow Status</label>
+                                            <select id="admin-new-status" class="form-control">
+                                                <option value="Under Review">Under Review (Inspect Site)</option>
+                                                <option value="Assigned">Assigned (Dispatch Crew)</option>
+                                                <option value="Resolved">Resolved (Completed Job)</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="admin-note">Officer Resolution Log Note</label>
+                                            <textarea id="admin-note" class="form-control" rows="3" placeholder="Enter details e.g., 'Asphalt sealing unit dispatched, expected restoration within 24h.'" required></textarea>
+                                        </div>
+                                        
+                                        <button type="submit" id="btn-update-admin" class="btn btn-red btn-block">
+                                            <i data-lucide="shield-check"></i> Commit Status Change & Dispatch
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TAB 6: SETTINGS -->
+                <div id="tab-settings" class="tab-pane">
+                    <div class="card settings-card max-w-2xl mx-auto">
+                        <div class="card-header">
+                            <h3><i data-lucide="key" class="title-icon"></i> API Credentials Setup</h3>
+                            <p class="card-subtitle">Store credentials to activate real GenAI models. Credentials are stored in-memory in your local server session.</p>
+                        </div>
+                        <div class="card-body">
+                            <form id="config-form" class="config-form">
+                                <div class="form-group">
+                                    <label for="config-gemini-key">Gemini API Key</label>
+                                    <input type="password" id="config-gemini-key" class="form-control" placeholder="AIzaSy...">
+                                    <span class="field-hint">Used for primary NLP schemes guide, voice synthesis, and vision diagnostics.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-openai-key">OpenAI API Key (Optional)</label>
+                                    <input type="password" id="config-openai-key" class="form-control" placeholder="sk-proj-...">
+                                    <span class="field-hint">Used as an alternate LLM provider.</span>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-indigo btn-block">
+                                    <i data-lucide="save"></i> Save Configuration
+                                </button>
+                            </form>
+                            
+                            <div class="api-instructions mt-6 bg-slate-900 p-4 border border-gray-800 rounded">
+                                <h4 class="flex items-center gap-2 text-indigo"><i data-lucide="info"></i> Quick Note for Hackathon Evaluators</h4>
+                                <p class="text-secondary mt-2 text-sm leading-relaxed">
+                                    If you leave the API keys empty, **SevaSetu AI** automatically switches to a fully featured **Simulated AI Engine**. 
+                                    The Scheme Matcher, photo reporter, and chatbot will remain fully interactive. 
+                                    To test vision triggers in offline mode, upload filenames containing <code>pothole</code>, <code>garbage</code>, <code>light</code>, or <code>water</code>!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+        
+        <!-- Persistent Floating AI Companion (Vani) -->
+        <div id="vani-chat-widget" class="vani-widget closed">
+            <!-- Closed bubble trigger -->
+            <button id="vani-trigger" class="vani-bubble">
+                <i data-lucide="message-square" class="chat-icon"></i>
+                <i data-lucide="chevron-down" class="close-icon hidden"></i>
+                <span class="badge-pulse"></span>
+            </button>
+            
+            <!-- Chat Drawer Window -->
+            <div class="vani-window">
+                <div class="vani-header">
+                    <div class="vani-avatar-info">
+                        <div class="vani-avatar">
+                            <i data-lucide="bot"></i>
+                        </div>
+                        <div>
+                            <h4>Vani</h4>
+                            <span class="vani-status">Online • Multi-lingual Guide</span>
+                        </div>
+                    </div>
+                    <div class="vani-header-actions">
+                        <button id="btn-clear-chat" title="Clear Chat"><i data-lucide="trash-2"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Chat Log -->
+                <div id="vani-chat-body" class="vani-body">
+                    <!-- Welcomes -->
+                    <div class="chat-msg bot">
+                        <div class="msg-bubble">
+                            Namaste! I am Vani, your SevaSetu AI Companion. How can I help you today? You can ask me about local welfare schemes or how to report civic issues.
+                        </div>
+                        <span class="msg-time">Just Now</span>
+                    </div>
+                </div>
+                
+                <!-- Chat Quick Suggestions -->
+                <div class="vani-suggestions">
+                    <button class="suggest-btn" data-query="What is PM-Kisan Samman Nidhi?">PM-Kisan?</button>
+                    <button class="suggest-btn" data-query="How to apply for Ayushman Bharat?">Ayushman Bharat?</button>
+                    <button class="suggest-btn" data-query="What documents are needed for Atal Pension?">Atal Pension Docs?</button>
+                    <button class="suggest-btn" data-query="How do I file a pothole issue?">Report issue?</button>
+                </div>
+                
+                <!-- Input Panel -->
+                <div class="vani-footer">
+                    <button id="btn-speech-read" class="action-btn" title="Read AI Response Aloud">
+                        <i data-lucide="volume-2"></i>
+                    </button>
+                    
+                    <input type="text" id="vani-input" placeholder="Type query (e.g. किसान योजना)...">
+                    
+                    <button id="btn-speech-listen" class="action-btn" title="Speak (Voice Typing)">
+                        <i data-lucide="mic"></i>
+                    </button>
+                    
+                    <button id="btn-send-message" class="send-btn">
+                        <i data-lucide="send"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Leaflet Map JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- App Main Script -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
