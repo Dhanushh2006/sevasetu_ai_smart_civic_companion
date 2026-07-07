@@ -1,5 +1,127 @@
 [
   {
+    "id": "comp-107",
+    "title": "Trash Pileup",
+    "category": "Sanitation & Waste",
+    "description": "Garbage pile in neighborhood.",
+    "location": "Park Corner",
+    "latitude": 12.9716,
+    "longitude": 77.5946,
+    "severity": "Medium",
+    "status": "Assigned",
+    "submitted_by": "Test Citizen",
+    "submitted_at": "2026-07-07T06:57:21.501639+00:00",
+    "timeline": [
+      {
+        "status": "Submitted",
+        "timestamp": "2026-07-07T06:57:21.501639+00:00",
+        "note": "Complaint registered successfully."
+      },
+      {
+        "status": "Assigned",
+        "timestamp": "2026-07-07T06:57:21.507324+00:00",
+        "note": "Sanitation crew dispatched."
+      }
+    ],
+    "image_path": "/static/assets/default_issue.jpg",
+    "ai_verification": {
+      "verified": true,
+      "category_detected": "Sanitation & Waste",
+      "severity_score": 5,
+      "confidence": 0.9,
+      "draft_letter": "AI generated letter placeholder."
+    }
+  },
+  {
+    "id": "comp-106",
+    "title": "Broken Water Pipe",
+    "category": "Utilities & Power",
+    "description": "Drinking water leaking on Main Road.",
+    "location": "Main Road",
+    "latitude": 12.9716,
+    "longitude": 77.5946,
+    "severity": "Medium",
+    "status": "Submitted",
+    "submitted_by": "Test Citizen",
+    "submitted_at": "2026-07-07T06:57:20.981481+00:00",
+    "timeline": [
+      {
+        "status": "Submitted",
+        "timestamp": "2026-07-07T06:57:20.981481+00:00",
+        "note": "Complaint registered successfully."
+      }
+    ],
+    "image_path": "/static/assets/default_issue.jpg",
+    "ai_verification": {
+      "verified": true,
+      "category_detected": "Utilities & Power",
+      "severity_score": 5,
+      "confidence": 0.9,
+      "draft_letter": "AI generated letter placeholder."
+    }
+  },
+  {
+    "id": "comp-105",
+    "title": "Trash Pileup",
+    "category": "Sanitation & Waste",
+    "description": "Garbage pile in neighborhood.",
+    "location": "Park Corner",
+    "latitude": 12.9716,
+    "longitude": 77.5946,
+    "severity": "Medium",
+    "status": "Assigned",
+    "submitted_by": "Test Citizen",
+    "submitted_at": "2026-07-07T06:54:12.380375Z",
+    "timeline": [
+      {
+        "status": "Submitted",
+        "timestamp": "2026-07-07T06:54:12.380375Z",
+        "note": "Complaint registered successfully."
+      },
+      {
+        "status": "Assigned",
+        "timestamp": "2026-07-07T06:54:12.388035Z",
+        "note": "Sanitation crew dispatched."
+      }
+    ],
+    "image_path": "/static/assets/default_issue.jpg",
+    "ai_verification": {
+      "verified": true,
+      "category_detected": "Sanitation & Waste",
+      "severity_score": 5,
+      "confidence": 0.9,
+      "draft_letter": "AI generated letter placeholder."
+    }
+  },
+  {
+    "id": "comp-104",
+    "title": "Broken Water Pipe",
+    "category": "Utilities & Power",
+    "description": "Drinking water leaking on Main Road.",
+    "location": "Main Road",
+    "latitude": 12.9716,
+    "longitude": 77.5946,
+    "severity": "Medium",
+    "status": "Submitted",
+    "submitted_by": "Test Citizen",
+    "submitted_at": "2026-07-07T06:54:11.584445Z",
+    "timeline": [
+      {
+        "status": "Submitted",
+        "timestamp": "2026-07-07T06:54:11.584445Z",
+        "note": "Complaint registered successfully."
+      }
+    ],
+    "image_path": "/static/assets/default_issue.jpg",
+    "ai_verification": {
+      "verified": true,
+      "category_detected": "Utilities & Power",
+      "severity_score": 5,
+      "confidence": 0.9,
+      "draft_letter": "AI generated letter placeholder."
+    }
+  },
+  {
     "id": "comp-101",
     "title": "Severe Potholes on Main MG Road",
     "category": "Roads & Transport",
@@ -12,9 +134,21 @@
     "submitted_by": "Ramesh Kumar",
     "submitted_at": "2026-07-01T10:30:00Z",
     "timeline": [
-      { "status": "Submitted", "timestamp": "2026-07-01T10:30:00Z", "note": "Complaint registered successfully." },
-      { "status": "Under Review", "timestamp": "2026-07-02T09:15:00Z", "note": "Assigned to the Ward 84 Engineering Department." },
-      { "status": "Assigned", "timestamp": "2026-07-03T14:20:00Z", "note": "Contractor assigned for road restoration." }
+      {
+        "status": "Submitted",
+        "timestamp": "2026-07-01T10:30:00Z",
+        "note": "Complaint registered successfully."
+      },
+      {
+        "status": "Under Review",
+        "timestamp": "2026-07-02T09:15:00Z",
+        "note": "Assigned to the Ward 84 Engineering Department."
+      },
+      {
+        "status": "Assigned",
+        "timestamp": "2026-07-03T14:20:00Z",
+        "note": "Contractor assigned for road restoration."
+      }
     ],
     "image_path": "/static/assets/pothole.jpg",
     "ai_verification": {
@@ -38,8 +172,16 @@
     "submitted_by": "Ananya Sharma",
     "submitted_at": "2026-07-05T08:00:00Z",
     "timeline": [
-      { "status": "Submitted", "timestamp": "2026-07-05T08:00:00Z", "note": "Complaint registered successfully." },
-      { "status": "Under Review", "timestamp": "2026-07-06T11:45:00Z", "note": "Forwarded to the Solid Waste Management division." }
+      {
+        "status": "Submitted",
+        "timestamp": "2026-07-05T08:00:00Z",
+        "note": "Complaint registered successfully."
+      },
+      {
+        "status": "Under Review",
+        "timestamp": "2026-07-06T11:45:00Z",
+        "note": "Forwarded to the Solid Waste Management division."
+      }
     ],
     "image_path": "/static/assets/garbage.jpg",
     "ai_verification": {
@@ -63,10 +205,26 @@
     "submitted_by": "Vikram Singh",
     "submitted_at": "2026-06-28T19:40:00Z",
     "timeline": [
-      { "status": "Submitted", "timestamp": "2026-06-28T19:40:00Z", "note": "Complaint registered successfully." },
-      { "status": "Under Review", "timestamp": "2026-06-29T10:00:00Z", "note": "Assigned to the Electrical Maintenance division." },
-      { "status": "Assigned", "timestamp": "2026-06-29T15:30:00Z", "note": "Technician dispatched to replace the LED fixture." },
-      { "status": "Resolved", "timestamp": "2026-07-02T12:00:00Z", "note": "Bulb replaced and light verified functional by technician." }
+      {
+        "status": "Submitted",
+        "timestamp": "2026-06-28T19:40:00Z",
+        "note": "Complaint registered successfully."
+      },
+      {
+        "status": "Under Review",
+        "timestamp": "2026-06-29T10:00:00Z",
+        "note": "Assigned to the Electrical Maintenance division."
+      },
+      {
+        "status": "Assigned",
+        "timestamp": "2026-06-29T15:30:00Z",
+        "note": "Technician dispatched to replace the LED fixture."
+      },
+      {
+        "status": "Resolved",
+        "timestamp": "2026-07-02T12:00:00Z",
+        "note": "Bulb replaced and light verified functional by technician."
+      }
     ],
     "image_path": "/static/assets/broken_light.jpg",
     "ai_verification": {

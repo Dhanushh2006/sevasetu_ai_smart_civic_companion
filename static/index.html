@@ -37,28 +37,28 @@
                 </div>
             </div>
             
-            <nav class="sidebar-nav">
-                <button class="nav-btn active" data-tab="tab-dashboard">
+            <nav class="sidebar-nav" role="tablist" aria-label="Main Navigation">
+                <button class="nav-btn active" data-tab="tab-dashboard" role="tab" aria-selected="true" aria-label="Dashboard Hub Tab">
                     <i data-lucide="layout-dashboard"></i>
                     <span>Dashboard Hub</span>
                 </button>
-                <button class="nav-btn" data-tab="tab-schemes">
+                <button class="nav-btn" data-tab="tab-schemes" role="tab" aria-selected="false" aria-label="Scheme Matcher Tab">
                     <i data-lucide="search-code"></i>
                     <span>Scheme Matcher</span>
                 </button>
-                <button class="nav-btn" data-tab="tab-file-grievance">
+                <button class="nav-btn" data-tab="tab-file-grievance" role="tab" aria-selected="false" aria-label="Report Civic Issue Tab">
                     <i data-lucide="image-plus"></i>
                     <span>Report Civic Issue</span>
                 </button>
-                <button class="nav-btn" data-tab="tab-tracker">
+                <button class="nav-btn" data-tab="tab-tracker" role="tab" aria-selected="false" aria-label="Grievance Tracker Tab">
                     <i data-lucide="map-pin"></i>
                     <span>Grievance Tracker</span>
                 </button>
-                <button class="nav-btn" data-tab="tab-admin">
+                <button class="nav-btn" data-tab="tab-admin" role="tab" aria-selected="false" aria-label="Admin Simulator Tab">
                     <i data-lucide="shield-check"></i>
                     <span>Admin Simulator</span>
                 </button>
-                <button class="nav-btn" data-tab="tab-settings">
+                <button class="nav-btn" data-tab="tab-settings" role="tab" aria-selected="false" aria-label="API Configuration Tab">
                     <i data-lucide="settings"></i>
                     <span>API Configuration</span>
                 </button>
@@ -88,8 +88,8 @@
                 <div class="header-right">
                     <!-- Language Selection -->
                     <div class="language-dropdown">
-                        <i data-lucide="languages" class="lang-icon"></i>
-                        <select id="lang-selector" class="lang-select">
+                        <i data-lucide="languages" class="lang-icon" aria-hidden="true"></i>
+                        <select id="lang-selector" class="lang-select" aria-label="Select Interface and AI Chat Language">
                             <option value="English">English</option>
                             <option value="Hindi">हिन्दी (Hindi)</option>
                             <option value="Kannada">ಕನ್ನಡ (Kannada)</option>
@@ -290,17 +290,17 @@
                                 <form id="grievance-form" class="grievance-form">
                                     <!-- Photo Upload Zone -->
                                     <div class="form-group">
-                                        <label>Civic Issue Photo <span class="required">*</span></label>
-                                        <div id="upload-zone" class="upload-dropzone">
-                                            <input type="file" id="issue-image-input" accept="image/*" class="file-input-hidden">
+                                        <label for="issue-image-input">Civic Issue Photo <span class="required">*</span></label>
+                                        <div id="upload-zone" class="upload-dropzone" role="button" tabindex="0" aria-label="Upload civic issue photo" onkeypress="if(event.key === 'Enter') document.getElementById('issue-image-input').click();">
+                                            <input type="file" id="issue-image-input" accept="image/*" class="file-input-hidden" aria-required="true">
                                             <div class="dropzone-content">
-                                                <i data-lucide="image" class="upload-icon"></i>
+                                                <i data-lucide="image" class="upload-icon" aria-hidden="true"></i>
                                                 <p class="upload-text">Drag & drop photo here or <span>browse files</span></p>
                                                 <span class="upload-hint">Supports JPEG, PNG, WEBP (Max 5MB)</span>
                                             </div>
                                             <div class="preview-container hidden">
                                                 <img id="image-preview" src="#" alt="Upload Preview">
-                                                <button type="button" id="btn-remove-photo" class="btn-circle btn-danger"><i data-lucide="x"></i></button>
+                                                <button type="button" id="btn-remove-photo" class="btn-circle btn-danger" aria-label="Remove uploaded photo"><i data-lucide="x"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -612,19 +612,19 @@
         </main>
         
         <!-- Persistent Floating AI Companion (Vani) -->
-        <div id="vani-chat-widget" class="vani-widget closed">
+        <div id="vani-chat-widget" class="vani-widget closed" role="region" aria-label="Vani AI Chat Companion">
             <!-- Closed bubble trigger -->
-            <button id="vani-trigger" class="vani-bubble">
-                <i data-lucide="message-square" class="chat-icon"></i>
-                <i data-lucide="chevron-down" class="close-icon hidden"></i>
+            <button id="vani-trigger" class="vani-bubble" aria-label="Toggle Vani AI Chat Companion" aria-expanded="false">
+                <i data-lucide="message-square" class="chat-icon" aria-hidden="true"></i>
+                <i data-lucide="chevron-down" class="close-icon hidden" aria-hidden="true"></i>
                 <span class="badge-pulse"></span>
             </button>
             
             <!-- Chat Drawer Window -->
-            <div class="vani-window">
+            <div class="vani-window" role="dialog" aria-label="Vani Chat Dialog">
                 <div class="vani-header">
                     <div class="vani-avatar-info">
-                        <div class="vani-avatar">
+                        <div class="vani-avatar" aria-hidden="true">
                             <i data-lucide="bot"></i>
                         </div>
                         <div>
@@ -633,7 +633,7 @@
                         </div>
                     </div>
                     <div class="vani-header-actions">
-                        <button id="btn-clear-chat" title="Clear Chat"><i data-lucide="trash-2"></i></button>
+                        <button id="btn-clear-chat" title="Clear Chat" aria-label="Clear Chat History"><i data-lucide="trash-2" aria-hidden="true"></i></button>
                     </div>
                 </div>
                 
@@ -658,18 +658,18 @@
                 
                 <!-- Input Panel -->
                 <div class="vani-footer">
-                    <button id="btn-speech-read" class="action-btn" title="Read AI Response Aloud">
-                        <i data-lucide="volume-2"></i>
+                    <button id="btn-speech-read" class="action-btn" title="Read AI Response Aloud" aria-label="Read AI Response Aloud">
+                        <i data-lucide="volume-2" aria-hidden="true"></i>
                     </button>
                     
-                    <input type="text" id="vani-input" placeholder="Type query (e.g. किसान योजना)...">
+                    <input type="text" id="vani-input" placeholder="Type query (e.g. किसान योजना)..." aria-label="Chat input query text">
                     
-                    <button id="btn-speech-listen" class="action-btn" title="Speak (Voice Typing)">
-                        <i data-lucide="mic"></i>
+                    <button id="btn-speech-listen" class="action-btn" title="Speak (Voice Typing)" aria-label="Voice input dictation">
+                        <i data-lucide="mic" aria-hidden="true"></i>
                     </button>
                     
-                    <button id="btn-send-message" class="send-btn">
-                        <i data-lucide="send"></i>
+                    <button id="btn-send-message" class="send-btn" aria-label="Send Chat Message">
+                        <i data-lucide="send" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>

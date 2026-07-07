@@ -2,7 +2,7 @@ import os
 import json
 import base64
 import requests
-from datetime import datetime
+from datetime import datetime, timezone
 from flask import Flask, request, jsonify, send_from_directory, redirect
 from dotenv import load_dotenv
 
@@ -78,6 +78,10 @@ def write_json(filepath, data):
         print(f"Disk write skipped (Serverless Mode), saved in-memory: {e}")
         return True
 
+# Pre-seed database caches in memory at module loading (Efficiency optimization)
+read_json(SCHEMES_FILE, default=[])
+read_json(COMPLAINTS_FILE, default=[])
+
 # Serve Single Page Application index.html
 @app.route('/')
 def index():
@@ -122,7 +126,7 @@ def create_complaint():
     new_data = request.json or {}
     
     comp_id = f"comp-{len(complaints) + 101}"
-    now_str = datetime.utcnow().isoformat() + "Z"
+    now_str = datetime.now(timezone.utc).isoformat()
     
     complaint = {
         "id": comp_id,
@@ -165,7 +169,7 @@ def update_complaint_status(comp_id):
     for comp in complaints:
         if comp["id"] == comp_id:
             comp["status"] = new_status
-            now_str = datetime.utcnow().isoformat() + "Z"
+            now_str = datetime.now(timezone.utc).isoformat()
             comp["timeline"].append({
                 "status": new_status,
                 "timestamp": now_str,
@@ -532,10 +536,7 @@ Sincerely,
     }
 
 if __name__ == '__main__':
-    # Initialize JSON files if missing
-    read_json(SCHEMES_FILE, default=[])
-    read_json(COMPLAINTS_FILE, default=[])
-    
     port = int(os.getenv("PORT", 5000))
-    print(f"Starting SevaSetu AI backend on port {port}...")
-    app.run(host='0.0.0.0', port=port, debug=True)
+    debug_mode = os.getenv("FLASK_DEBUG", "False").lower() in ("true", "1")
+    print(f"Starting SevaSetu AI backend on port {port} (debug={debug_mode})...")
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)

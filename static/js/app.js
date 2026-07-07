@@ -1,6 +1,20 @@
 // SevaSetu AI App Logic
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Helper to sanitize inputs and prevent XSS (Security fix)
+    function escapeHTML(str) {
+        if (!str) return '';
+        return String(str).replace(/[&<>'"]/g, 
+            tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag] || tag)
+        );
+    }
+
     // Global App State
     const state = {
         activeTab: 'tab-dashboard',
@@ -76,8 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.nav-btn').forEach(btn => {
             if (btn.getAttribute('data-tab') === tabId) {
                 btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
             } else {
                 btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
             }
         });
 
@@ -383,14 +399,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const dateObj = new Date(comp.submitted_at);
             const dateStr = dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
 
+            const safeId = escapeHTML(comp.id);
+            const safeTitle = escapeHTML(comp.title);
+            const safeStatus = escapeHTML(comp.status);
+            const safeCat = escapeHTML(comp.category);
+
             item.innerHTML = `
                 <div class="tracker-item-header">
-                    <span class="tracker-item-id">${comp.id}</span>
-                    <span class="status-badge ${statusClass}">${comp.status}</span>
+                    <span class="tracker-item-id">${safeId}</span>
+                    <span class="status-badge ${statusClass}">${safeStatus}</span>
                 </div>
-                <h4>${comp.title}</h4>
+                <h4>${safeTitle}</h4>
                 <div class="tracker-item-footer">
-                    <span>${comp.category}</span>
+                    <span>${safeCat}</span>
                     <span>${dateStr}</span>
                 </div>
             `;
@@ -1013,13 +1034,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const dateObj = new Date(comp.submitted_at);
             const dateStr = dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
 
+            const safeId = escapeHTML(comp.id);
+            const safeTitle = escapeHTML(comp.title);
+            const safeStatus = escapeHTML(comp.status);
+            const safeCat = escapeHTML(comp.category);
+
             item.innerHTML = `
                 <div class="admin-queue-header">
-                    <h4>${comp.id}: ${comp.title}</h4>
-                    <span class="status-badge ${comp.status.toLowerCase().replace(' ', '-')}" style="font-size: 0.65rem;">${comp.status}</span>
+                    <h4>${safeId}: ${safeTitle}</h4>
+                    <span class="status-badge ${safeStatus.toLowerCase().replace(' ', '-')}" style="font-size: 0.65rem;">${safeStatus}</span>
                 </div>
                 <div class="admin-queue-details">
-                    <span>${comp.category}</span>
+                    <span>${safeCat}</span>
                     <span>${dateStr}</span>
                 </div>
             `;
@@ -1077,7 +1103,9 @@ document.addEventListener('DOMContentLoaded', () => {
         trigger.addEventListener('click', () => {
             widget.classList.toggle('open');
             widget.classList.toggle('closed');
-            if (widget.classList.contains('open')) {
+            const isOpen = widget.classList.contains('open');
+            trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            if (isOpen) {
                 input.focus();
                 scrollChatToBottom();
             }
@@ -1249,8 +1277,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const now = new Date();
             const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
 
+            const safeText = escapeHTML(text);
+
             // Convert simple markdown links/bold to HTML tags
-            let htmlText = text
+            let htmlText = safeText
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\*(.*?)\*/g, '<em>$1</em>')
                 .replace(/`([^`]+)`/g, '<code>$1</code>')
